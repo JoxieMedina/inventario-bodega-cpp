@@ -64,10 +64,10 @@ struct FrutaVerdura {
 };
 
 std::vector <struct Grano> inventarioGranos;
-std::vector <struct Grano> inventarioLimpieza;
-std::vector <struct Grano> inventarioLiquidos;
-std::vector <struct Grano> inventarioCarnes;
-std::vector <struct Grano> inventarioFrutaVerdura;
+std::vector <struct Limpieza> inventarioLimpieza;
+std::vector <struct Liquido> inventarioLiquidos;
+std::vector <struct Carne> inventarioCarnes;
+std::vector <struct FrutaVerdura> inventarioFrutaVerdura;
 
 int leerNumero () {
     int eleccion = -1;
@@ -80,8 +80,11 @@ char leerLetra () {
     return eleccion;
 }
 
-std::string leerPalabra () {
-    std::cin.ignore(1);
+std::string leerPalabra (bool ignorarAnteriorChar) {
+    // Verificar si se ha hecho un cin>> antes
+    if (ignorarAnteriorChar) {
+        std::cin.ignore();
+    }
     std::string palabra;
     std::getline(std::cin, palabra);
     return palabra;

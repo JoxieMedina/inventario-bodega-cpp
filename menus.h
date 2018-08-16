@@ -1,7 +1,6 @@
 #include "funciones.h"
 
 void mostrarMenuPrincipal(){
-    system("clear");
     std::cout<<"	 _________________________________________ "<<std::endl;
     std::cout<<"	||)()()()()()()()()()()()()()()()()||"<<std::endl;
     std::cout<<"	||-->     Inventario Bodega     <--||"<<std::endl;
@@ -21,7 +20,7 @@ void mostrarMenuPrincipal(){
 }
 
 void mostrarAgregar(){
-    system("clear");
+    std::cout<<"\n\n\n\n\n\n\n";
     std::cout<<"	 _________________________________________ "<<std::endl;
     std::cout<<"	||)()()()()()()()()()()()()()()()()()||"<<std::endl;
     std::cout<<"	||-->     Agregar Producto        <--||"<<std::endl;
@@ -42,7 +41,7 @@ void mostrarAgregar(){
 }
 
 void mostrarModificar(){
-    system("clear");
+    std::cout<<"\n\n\n\n\n\n\n";
     std::cout<<"	 _________________________________________ "<<std::endl;
     std::cout<<"	||)()()()()()()()()()()()()()()()()()||"<<std::endl;
     std::cout<<"	||-->     Modificar Producto        <--||"<<std::endl;
@@ -64,7 +63,7 @@ void mostrarModificar(){
 }
 
 void mostrarEliminar(){
-    system("clear");
+    std::cout<<"\n\n\n\n\n\n\n";
     std::cout<<"	 _________________________________________ "<<std::endl;
     std::cout<<"	||)()()()()()()()()()()()()()()()()()||"<<std::endl;
     std::cout<<"	||-->     Eliminar Producto        <--||"<<std::endl;
@@ -85,7 +84,7 @@ void mostrarEliminar(){
 }
 
 void mostrarReportes(){
-    system("clear");
+    std::cout<<"\n\n";
     std::cout<<"	 _________________________________________ "<<std::endl;
     std::cout<<"	||)()()()()()()()()()()()()()()()()()(||"<<std::endl;
     std::cout<<"	||-->     Reportes de Productos    <--||"<<std::endl;
@@ -116,19 +115,19 @@ void menuAgregar(){
                 agregarGrano();
                 break;
             case 'b':
-                std::cout<<"Agregar limpieza: ";
+                agregarLimpieza();
                 break;
             case 'c':
-                std::cout<<"Agregar liquido: ";
+                agregarLiquido();
                 break;
             case 'd':
-                std::cout<<"Agregar embutido: ";
-            case 'e':
-                std::cout<<"Agregar fruta/verdura: ";
+                agregarEmbutido();
                 break;
+            case 'e':
+                agregarFrutaVerdura();
                 break;
             case 'r':
-                system("clear");
+                std::cout<<"\n\n\n\n\n\n\n";
                 return;
             default:
                 std::cout<<"Opcion incorrecta "<<std::endl;
@@ -138,6 +137,7 @@ void menuAgregar(){
 
     }
 }
+
 void menuModificar(){
     char opcion = 'z';
     while(opcion != 0){
@@ -145,7 +145,7 @@ void menuModificar(){
         opcion = leerLetra();
         switch(opcion){
             case 'a':
-                std::cout<<"Modificar grano: ";
+                modificarGrano();
                 break;
             case 'b':
                 std::cout<<"Modificar limpieza: ";
@@ -160,7 +160,7 @@ void menuModificar(){
                 break;
                 break;
             case 'r':
-                system("clear");
+                std::cout<<"\n\n\n\n\n\n\n";
                 return;
             default:
                 std::cout<<"Opcion incorrecta "<<std::endl;
@@ -170,6 +170,7 @@ void menuModificar(){
 
     }
 }
+
 void menuEliminar(){
     char opcion = 'z';
     while(opcion != 0){
@@ -191,7 +192,7 @@ void menuEliminar(){
                 std::cout<<"Eliminar fruta/verdura: ";
                 break;
             case 'r':
-                system("clear");
+                std::cout<<"\n\n\n\n\n\n\n";
                 return;
             default:
                 std::cout<<"Opcion incorrecta "<<std::endl;
@@ -212,21 +213,21 @@ void menuReportes(){
                 reporteGranos();
                 break;
             case 'b':
-                std::cout<<"Reporte limpieza: ";
+                reporteLimpieza();
                 break;
             case 'c':
-                std::cout<<"Reporte liquido: ";
+                reporteLiquido();
                 break;
             case 'd':
-                std::cout<<"Reporte embutido: ";
+                reporteEmbutido();
             case 'e':
-                std::cout<<"Reporte fruta/verdura: ";
+                reporteFrutaVerdura();
                 break;
             case 'f':
-                reporteGranos();
+                reporteTodos();
                 break;
             case 'r':
-                system("clear");
+                std::cout<<"\n\n\n\n\n\n\n";
                 return;
             default:
                 std::cout<<"Opcion incorrecta "<<std::endl;
