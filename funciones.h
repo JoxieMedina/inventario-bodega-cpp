@@ -1,3 +1,4 @@
+#include <altivec.h>
 #include "utilidades.h"
 
 
@@ -59,7 +60,7 @@ void agregarLiquido(){
     nuevo.precio = leerNumero();
     std::cout << "\nNombre: ";
     nuevo.nombre = leerPalabra(true);
-    std::cout << "\nFecha vencimiento (dia/mes/anio: ";
+    std::cout << "\nFecha vencimiento (dia/mes/anio): ";
     nuevo.fechaVencimiento = leerPalabra(false);
     nuevo.categoria = leerLiquidoCategoria();
     nuevo.empaque = leerLiquidoEmpaque();
@@ -154,16 +155,16 @@ void reporteLimpieza () {
         std::cout << "\n---------->Inventario Limpieza Vacio<-----------";
     } else {
         std::cout << "\n---------->Inventario Limpieza<-----------";
-        std::cout << "\nNro     Codigo      Nombre      Cantidad     Marca    Proveedor     Tipo"<<std::endl;
+        std::cout << "\nNro     Codigo      Nombre      Precio     Cantidad     Marca    Proveedor     Tipo"<<std::endl;
         for(int i=0; i < inventarioLimpieza.size(); i++){
             std::cout<<i+1
-                     <<std::setw(10)<<inventarioLimpieza[i].codigo
-                     <<std::setw(10)<<inventarioLimpieza[i].nombre
-                     <<std::setw(10)<< inventarioLimpieza[i].precio
-                     <<std::setw(10)<< inventarioLimpieza[i].cantidadInventario
-                     <<std::setw(10)<<inventarioLimpieza[i].marca
-                     <<std::setw(10)<<inventarioLimpieza[i].proveedor
-                     <<std::setw(10)<< LimpiezaTipoValor[inventarioLimpieza[i].tipo]<<std::endl;
+                     <<std::setw(13)<<inventarioLimpieza[i].codigo
+                     <<std::setw(13)<<inventarioLimpieza[i].nombre
+                     <<std::setw(13)<< inventarioLimpieza[i].precio
+                     <<std::setw(13)<< inventarioLimpieza[i].cantidadInventario
+                     <<std::setw(13)<<inventarioLimpieza[i].marca
+                     <<std::setw(13)<<inventarioLimpieza[i].proveedor
+                     <<std::setw(13)<< LimpiezaTipoValor[inventarioLimpieza[i].tipo]<<std::endl;
         }
     }
 
@@ -256,6 +257,7 @@ void modificarGrano(){
     std::cout << "\n||--> 2. Procedencia: " << inventarioGranos[seleccion].procedencia << std::endl;
     std::cout << "\n||--> 3. Peso: " << inventarioGranos[seleccion].quintales << " Quintales" << std::endl;
     std::cout << "\n||--> 4. Unidad: " << GranoUnidadValor[inventarioGranos[seleccion].unidad] << std::endl;
+    std::cout << "\n===> Su eleccion: ";
     int propiedad = leerNumero();
     switch (propiedad){
         case 1:
@@ -281,3 +283,193 @@ void modificarGrano(){
     return;
 }
 
+void modificarLimpieza(){
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteLimpieza();
+    std::cout << "\nNro a modificar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioLimpieza.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    std::cout << "\n----->Elija una propiedad a modicar<-----";
+    std::cout << "\n||--> 1. Precio: " << inventarioLimpieza[seleccion].precio << std::endl;
+    std::cout << "\n||--> 2. Cantidad: " << inventarioLimpieza[seleccion].cantidadInventario << std::endl;
+    std::cout << "\n||--> 3. Marca: " << inventarioLimpieza[seleccion].marca << std::endl;
+    std::cout << "\n||--> 4. Proveedor: " << inventarioLimpieza[seleccion].proveedor << std::endl;
+    std::cout << "\n||--> 5. Nombre: " << inventarioLimpieza[seleccion].nombre << std::endl;
+    std::cout << "\n||--> 6. Tipo: " << LimpiezaTipoValor[inventarioLimpieza[seleccion].tipo] << std::endl;
+    std::cout << "\n===> Su eleccion: ";
+    int propiedad = leerNumero();
+    switch (propiedad){
+        case 1:
+            std::cout << "\nNuevo precio: ";
+            inventarioLimpieza[seleccion].precio = leerNumero();
+            break;
+        case 2:
+            std::cout << "\nNueva cantidad: ";
+            inventarioLimpieza[seleccion].cantidadInventario = leerNumero();
+            break;
+        case 3:
+            std::cout << "\nNuevo marca: ";
+            inventarioLimpieza[seleccion].marca = leerPalabra(true);
+            break;
+        case 4:
+            std::cout << "\nNueva proveedor: ";
+            inventarioLimpieza[seleccion].proveedor = leerPalabra(true);
+            break;
+        case 5:
+            std::cout << "\nNuevo nombre: ";
+            inventarioLimpieza[seleccion].nombre = leerPalabra(true);
+            break;
+        case 6:
+            std::cout << "\nNuevo Tipo: ";
+            inventarioLimpieza[seleccion].tipo = leerTipoLimpieza();
+            break;
+        default:
+            return;
+    }
+    std::cout << "\n----->Modificacion exitosa<-----";
+    return;
+}
+
+void modificarLiquido(){
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteLiquido();
+    std::cout << "\nNro a modificar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioLiquidos.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    std::cout << "\n----->Elija una propiedad a modicar<-----";
+    std::cout << "\n||--> 1. Nombre: " << inventarioLiquidos[seleccion].nombre << std::endl;
+    std::cout << "\n||--> 2. Precio: " << inventarioLiquidos[seleccion].precio << std::endl;
+    std::cout << "\n||--> 3. Vencimiento: " << inventarioLiquidos[seleccion].fechaVencimiento << std::endl;
+    std::cout << "\n||--> 4. Categoria: " << LiquidoCategoriaValor[inventarioLiquidos[seleccion].categoria] << std::endl;
+    std::cout << "\n||--> 5. Empaque: " << LiquidoEmpaqueValor[inventarioLiquidos[seleccion].empaque] << std::endl;
+    std::cout << "\n||--> 6. Tamanio: " << LiquidoTamanioValor[inventarioLiquidos[seleccion].tamanio] << std::endl;
+    std::cout << "\n===> Su eleccion: ";
+    int propiedad = leerNumero();
+    switch (propiedad){
+        case 1:
+            std::cout << "\nNuevo nombre: ";
+            inventarioLiquidos[seleccion].nombre = leerPalabra(true);
+            break;
+        case 2:
+            std::cout << "\nNuevo precio: ";
+            inventarioLiquidos[seleccion].precio = leerNumero();
+            break;
+        case 3:
+            std::cout << "\nNueva fecha vencimiento (dia/mes/anio): ";
+            inventarioLiquidos[seleccion].fechaVencimiento = leerPalabra(true);
+            break;
+        case 4:
+            std::cout << "\nNueva categoria: ";
+            inventarioLiquidos[seleccion].categoria = leerLiquidoCategoria();
+            break;
+        case 5:
+            std::cout << "\nNuevo empaque: ";
+            inventarioLiquidos[seleccion].empaque = leerLiquidoEmpaque();
+            break;
+        case 6:
+            std::cout << "\nNuevo tamanio: ";
+            inventarioLiquidos[seleccion].tamanio = leerLiquidoTamanio();
+            break;
+        default:
+            return;
+    }
+    std::cout << "\n----->Modificacion exitosa<-----";
+    return;
+}
+
+void modificarEmbutido(){
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteEmbutido();
+    std::cout << "\nNro a modificar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioCarnes.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    std::cout << "\n----->Elija una propiedad a modicar<-----";
+    std::cout << "\n||--> 1. Precio: " << inventarioCarnes[seleccion].precio << std::endl;
+    std::cout << "\n||--> 2. Procedencia: " << inventarioCarnes[seleccion].procedencia << std::endl;
+    std::cout << "\n||--> 3. Cantidad: " << inventarioCarnes[seleccion].cantidadInventario <<std::endl;
+    std::cout << "\n||--> 4. Tipo: " << CarneTipoValor[inventarioCarnes[seleccion].tipo] << std::endl;
+    std::cout << "\n===> Su eleccion: ";
+    int propiedad = leerNumero();
+    switch (propiedad){
+        case 1:
+            std::cout << "\nNuevo precio: ";
+            inventarioCarnes[seleccion].precio = leerNumero();
+            break;
+        case 2:
+            std::cout << "\nNuevo procedencia: ";
+            inventarioCarnes[seleccion].procedencia = leerPalabra(true);
+            break;
+        case 3:
+            std::cout << "\nNueva cantidad: ";
+            inventarioCarnes[seleccion].cantidadInventario = leerNumero();
+            break;
+        case 4:
+            std::cout << "\nNuevo tipo: ";
+            inventarioCarnes[seleccion].tipo = leerCarneTipo();
+            break;
+        default:
+            return;
+    }
+    std::cout << "\n----->Modificacion exitosa<-----";
+    return;
+}
+
+void modificarFrutaVerdura(){
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteFrutaVerdura();
+    std::cout << "\nNro a modificar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioFrutaVerdura.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    std::cout << "\n||--> 1. Precio: " << inventarioFrutaVerdura[seleccion].precio << std::endl;
+    std::cout << "\n||--> 2. Tipo: ";
+    if (inventarioFrutaVerdura[seleccion].categoriaFruta != CategoriaFruta::NoFruta) {
+        std::cout<<"Fruta "<<CategoriaFrutaValor[inventarioFrutaVerdura[seleccion].categoriaFruta];
+    } else {
+        std::cout<<"Verdura "<<CategoriaVerduraValor[inventarioFrutaVerdura[seleccion].categoriaVerdura];
+    }
+    std::cout << "\n\n||--> 3. Cantidad: " << inventarioFrutaVerdura[seleccion].cantidadInvetario <<std::endl;
+    std::cout << "\n===> Su eleccion: ";
+    int propiedad = leerNumero();
+    switch (propiedad){
+        case 1:
+            std::cout << "\nNuevo precio: ";
+            inventarioFrutaVerdura[seleccion].precio = leerNumero();
+            break;
+        case 2:
+            std::cout << "\nNuevo tipo: ";
+            if (inventarioFrutaVerdura[seleccion].categoriaFruta != CategoriaFruta::NoFruta) {
+                inventarioFrutaVerdura[seleccion].categoriaFruta=leerCategoriaFruta();
+            } else {
+                inventarioFrutaVerdura[seleccion].categoriaVerdura=leerCategoriaVerdura();
+            }
+            break;
+        case 3:
+            std::cout << "\nNueva cantidad: ";
+            inventarioFrutaVerdura[seleccion].cantidadInvetario = leerNumero();
+            break;
+        default:
+            return;
+    }
+    std::cout << "\n----->Modificacion exitosa<-----";
+    return;
+}

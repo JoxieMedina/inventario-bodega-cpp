@@ -148,16 +148,16 @@ void menuModificar(){
                 modificarGrano();
                 break;
             case 'b':
-                std::cout<<"Modificar limpieza: ";
+                modificarLimpieza();
                 break;
             case 'c':
-                std::cout<<"Modificar liquido: ";
+                modificarLiquido();
                 break;
             case 'd':
-                std::cout<<"Modificar embutido: ";
-            case 'e':
-                std::cout<<"Modificar fruta/verdura: ";
+                modificarEmbutido();
                 break;
+            case 'e':
+                modificarFrutaVerdura();
                 break;
             case 'r':
                 std::cout<<"\n\n\n\n\n\n\n";
