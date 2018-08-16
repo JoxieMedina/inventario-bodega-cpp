@@ -209,7 +209,7 @@ void menuReportes(){
         opcion = leerLetra();
         switch(opcion){
             case 'a':
-                std::cout<<"Reporte grano: ";
+                reporteGranos();
                 break;
             case 'b':
                 std::cout<<"Reporte limpieza: ";
@@ -223,7 +223,7 @@ void menuReportes(){
                 std::cout<<"Reporte fruta/verdura: ";
                 break;
             case 'f':
-                std::cout<<"Reporte todos ";
+                reporteGranos();
                 break;
             case 'r':
                 system("clear");
@@ -241,7 +241,6 @@ void MenuPrincipal(){
     int opcion = -1;
     while(opcion != 5){
         mostrarMenuPrincipal();
-        std::cout<<"Tu eleccion: ";
         opcion = leerNumero();
         switch(opcion){
             case 1:

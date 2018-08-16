@@ -81,7 +81,8 @@ char leerLetra () {
 }
 
 std::string leerPalabra () {
-    std::string palabra = "";
+    std::cin.ignore(1);
+    std::string palabra;
     std::getline(std::cin, palabra);
     return palabra;
 }
