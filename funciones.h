@@ -1,4 +1,3 @@
-#include <altivec.h>
 #include "utilidades.h"
 
 
@@ -471,5 +470,113 @@ void modificarFrutaVerdura(){
             return;
     }
     std::cout << "\n----->Modificacion exitosa<-----";
+    return;
+}
+
+
+// Funcion para eliminar
+
+void eliminarGrano(){
+    if (inventarioGranos.size() == 0){
+        std::cout << "\nNo hay registros! ";
+        return;
+    }
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteGranos();
+    std::cout << "\nNro a eliminar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioGranos.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    if(confirmarBorrar()){
+        inventarioGranos.erase( inventarioGranos.begin() + seleccion );
+    }
+    return;
+}
+
+void eliminarLimpieza(){
+    if (inventarioLimpieza.size() == 0){
+        std::cout << "\nNo hay registros! ";
+        return;
+    }
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteLimpieza();
+    std::cout << "\nNro a eliminar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioLimpieza.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    if(confirmarBorrar()){
+        inventarioLimpieza.erase( inventarioLimpieza.begin() + seleccion );
+    }
+    return;
+}
+
+void eliminarLiquido(){
+    if (inventarioLiquidos.size() == 0){
+        std::cout << "\nNo hay registros! ";
+        return;
+    }
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteLiquido();
+    std::cout << "\nNro a eliminar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioLiquidos.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    if(confirmarBorrar()){
+        inventarioLiquidos.erase( inventarioLiquidos.begin() + seleccion );
+    }
+    return;
+}
+
+void eliminarEmbutido(){
+    if (inventarioCarnes.size() == 0){
+        std::cout << "\nNo hay registros! ";
+        return;
+    }
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteEmbutido();
+    std::cout << "\nNro a eliminar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioCarnes.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    if(confirmarBorrar()){
+        inventarioCarnes.erase( inventarioCarnes.begin() + seleccion );
+    }
+    return;
+}
+
+void eliminarFrutaVerdura(){
+    if (inventarioFrutaVerdura.size() == 0){
+        std::cout << "\nNo hay registros! ";
+        return;
+    }
+    std::cout << "\nElija uno de la lista" << std::endl;
+    reporteFrutaVerdura();
+    std::cout << "\nNro a eliminar: ";
+    int seleccion = leerNumero();
+    if(seleccion > 0 && seleccion <= inventarioFrutaVerdura.size()){
+        seleccion= seleccion - 1;
+    } else {
+        std::cout << "\nRegistro no encontrado!! ";
+        return;
+    }
+    if(confirmarBorrar()){
+        inventarioFrutaVerdura.erase( inventarioFrutaVerdura.begin() + seleccion );
+    }
     return;
 }

@@ -230,6 +230,18 @@ bool confirmarGuardar(){
     }
 }
 
+bool confirmarBorrar(){
+    std::cout << "\n Seguro desea eliminar este registro? [s/n]: ";
+    char guardar = leerLetra();
+    if (guardar == 's' || guardar == 'S') {
+        std::cout << "\n----->eliminado con exito!<-----";
+        return true;
+    } else {
+        std::cout << "\n----->No se elimino ningun registro!<-----";
+        return false;
+    }
+}
+
 std::string leerValidarCodigoLimpieza(){
     std::cout << "\nIngrese un codigo no repetido: ";
     std::string codigo = leerPalabra(true);

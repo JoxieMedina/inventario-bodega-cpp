@@ -178,18 +178,18 @@ void menuEliminar(){
         opcion = leerLetra();
         switch(opcion){
             case 'a':
-                std::cout<<"Eliminar grano: ";
+                eliminarGrano();
                 break;
             case 'b':
-                std::cout<<"Eliminar limpieza: ";
+                eliminarLimpieza();
                 break;
             case 'c':
-                std::cout<<"Eliminar liquido: ";
+                eliminarLiquido();
                 break;
             case 'd':
-                std::cout<<"Eliminar embutido: ";
+                eliminarEmbutido();
             case 'e':
-                std::cout<<"Eliminar fruta/verdura: ";
+                eliminarFrutaVerdura();
                 break;
             case 'r':
                 std::cout<<"\n\n\n\n\n\n\n";
